@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:id="@+id/navigation_curr"
+            android:icon="@drawable/ic_euro_symbol_black_24dp"
+            android:title="@string/title_curr"/>
+
+    <item
+            android:id="@+id/navigation_convert"
+            android:icon="@drawable/ic_cached_black_24dp"
+            android:title="@string/title_convert"/>
+
+    <item
+            android:id="@+id/navigation_history"
+            android:icon="@drawable/ic_history_black_24dp"
+            android:title="@string/title_history"/>
+
+</menu>

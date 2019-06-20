@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Currency</string>
+    <string name="title_curr">Rate</string>
+    <string name="title_convert">Converter</string>
+    <string name="title_history">History</string>
+    <string-array name="currency_list">
+        <item id="RUB">RUB</item>
+        <item id="USD">USD</item>
+        <item id="EUR">EUR</item>
+        <item id="JPY">JPY</item>
+    </string-array>
+
+</resources>
