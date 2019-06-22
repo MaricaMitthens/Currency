@@ -20,8 +20,8 @@ import javax.xml.datatype.DatatypeConstants
 
 class CurrFragment : Fragment() {
     lateinit var adapter: CurrencyAdapter
-    var curr_values: MutableMap<String, Double> = mutableMapOf("RUB" to 1.0, "USD" to 6.0, "EUR" to 8.1, "JPY" to 9.3)
 
+    val selectedDate: SimpleDate = DateUtils.utils.todayAsDate()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_curr, container, false)
@@ -30,46 +30,33 @@ class CurrFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-
-        val c = Calendar.getInstance()
-        val year = c.get(Calendar.YEAR)
-        val month = c.get(Calendar.MONTH)
-        val day = c.get(Calendar.DAY_OF_MONTH)
-        val currentDate = "" + day + "." + MONTHS[month] + "." + year
-        /*
-        val values : Array<String> = arrayOf("GKELR  reoooo oeri", "GKELR  reoooo 2", "GKELR  reoooo3")
-        val adapter = ArrayAdapter<String>(this.context, android.R.layout.simple_list_item_1, values)
-        histView.adapter = adapter*/
-
-        tvDate.text = currentDate
+        tvDate.text = selectedDate.getAsSeparatedString('.')
         changeDateButton.setOnClickListener {
-            chooseDate(year, month, day)
+            Log.d("DATE1", "on click y = ${selectedDate.getYear()}, m = ${selectedDate.getMonth()},  d = ${selectedDate.getDay()}")
+            chooseDate(selectedDate.getYear(), selectedDate.getMonth(), selectedDate.getDay())
+            Log.d("DATE1", "after chosen y = ${selectedDate.getYear()}, m = ${selectedDate.getMonth()},  d = ${selectedDate.getDay()}")
+
         }
 
-        adapter = this.context?.let { CurrencyAdapter(it) }!!
+        adapter = this.context?.let { CurrencyAdapter(it, selectedDate) }!!
         rv_item_list.layoutManager = LinearLayoutManager(this.context)
         rv_item_list.adapter = adapter
-//        button.setOnClickListener {
-//            var myDate = tvDate.text.toString().replace(".", "/")
-//            Log.d("CURR_RES1", myDate)
-//            adapter.refreshCurrencyRate(myDate)
-//            Log.d("CURR_RES2", myDate)
-//        }
     }
 
 
     private fun chooseDate(current_year: Int, current_month: Int, current_day: Int) {
         val dpd =
             DatePickerDialog(this.context, DatePickerDialog.OnDateSetListener { _, year1, monthOfYear, dayOfMonth ->
-                val d = "" + dayOfMonth + "." + MONTHS[monthOfYear] + "." + year1
-                val d2 = "" + dayOfMonth + "/" + MONTHS[monthOfYear] + "/" + year1
+                selectedDate.set(dayOfMonth, monthOfYear + 1, year1)
+                val d = selectedDate.getAsSeparatedString('.')
+                val d2 = selectedDate.getAsSeparatedString('/')
                 tvDate.text = d
                 adapter.refreshCurrencyRate(d2)
-            }, current_year, current_month, current_day)
+            }, current_year, current_month - 1, current_day)
+
         dpd.datePicker.maxDate = System.currentTimeMillis() + 1000
         dpd.datePicker.minDate = 0
         dpd.show()
-
     }
 }
 
