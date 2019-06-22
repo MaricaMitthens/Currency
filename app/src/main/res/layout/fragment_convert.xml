@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="choose date"
+            android:text="@string/choose_date"
             android:textSize="22sp">
 
         </TextView>
@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="change date" />
+            android:text="@string/change_date" />
 
     </TableRow>
 
@@ -71,7 +71,7 @@
             android:ems="10"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:inputType="numberDecimal" />
+            android:inputType="none" />
 
         <Spinner
             android:id="@+id/spinner2"
@@ -90,6 +90,6 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="0dp"
-        android:text="Button" />
+        android:text="@string/conv" />
 
 </RelativeLayout>

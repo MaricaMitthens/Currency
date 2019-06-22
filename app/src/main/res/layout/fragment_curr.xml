@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="choose date"
+            android:text="@string/choose_date"
             android:textSize="22sp">
 
         </TextView>
@@ -30,8 +30,9 @@
     </TableRow>
 
 
-    <ListView
-        android:id="@+id/listView"
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_item_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/rowDate"

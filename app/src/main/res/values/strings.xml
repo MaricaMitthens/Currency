@@ -2,6 +2,9 @@
     <string name="app_name">Currency</string>
     <string name="title_curr">Rate</string>
     <string name="title_convert">Converter</string>
+    <string name="conv">Convert</string>
+    <string name="choose_date">Choose date</string>
+    <string name="change_date">Change date</string>
     <string name="title_history">History</string>
     <string-array name="currency_list">
         <item id="RUB">RUB</item>

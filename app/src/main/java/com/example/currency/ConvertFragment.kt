@@ -18,7 +18,7 @@ class ConvertFragment: Fragment() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
     }*/
-    var curr_values: MutableMap<String, Double> = mutableMapOf("RUB" to 1.0, "USD" to 6.0, "EUR" to 8.1, "JPY" to 9.3)
+    var curr_values: MutableMap<String, Float> = mutableMapOf("RUB" to 1.0f, "USD" to 6.0f, "EUR" to 8.1f, "JPY" to 9.3f)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         //return super.onCreateView(inflater, container, savedInstanceState)
@@ -65,15 +65,16 @@ class ConvertFragment: Fragment() {
             return
         }
        // var va = Math.round(val1.toDouble() * 40 * 100.0) / 100.0
-        var val2 = converter(curr1.toString(), curr2.toString(), val1.toDouble())
+        var val2 = converter(curr1.toString(), curr2.toString(), val1.toFloat())
         val res = val2?.let { Math.round(it * 100.0) / 100.0 }
         arg2.setText("$res")
 
     }
 
-    private fun converter(curr1:String, curr2:String, val3:Double): Double? {
+    private fun converter(curr1:String, curr2:String, val3:Float): Float? {
         var val2 = (curr_values[curr1])?.times(val3)?.div(curr_values[curr2]!!)
         return val2
+
     }
 
     private fun chooseDate(current_year : Int, current_month: Int, current_day: Int){
