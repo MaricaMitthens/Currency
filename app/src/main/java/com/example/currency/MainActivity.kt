@@ -1,6 +1,7 @@
 package com.example.currency
 
 import android.app.TaskStackBuilder
+import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
@@ -56,6 +57,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        var prefs = this.getSharedPreferences("com.example.currency", Context.MODE_PRIVATE)
+        HistoryStorage.instance.init(prefs)
+
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)

@@ -52,14 +52,11 @@ class CurrFragment : Fragment() {
                 val d2 = selectedDate.getAsSeparatedString('/')
                 tvDate.text = d
                 adapter.refreshCurrencyRate(d2)
+                HistoryStorage.instance.addOperationToHistory(CurrencyRateOperation("gte", d2))
             }, current_year, current_month - 1, current_day)
 
         dpd.datePicker.maxDate = System.currentTimeMillis() + 1000
         dpd.datePicker.minDate = 0
         dpd.show()
     }
-}
-
-private operator fun DatatypeConstants.Field.get(monthOfYear: Int): Any? {
-    return monthOfYear
 }

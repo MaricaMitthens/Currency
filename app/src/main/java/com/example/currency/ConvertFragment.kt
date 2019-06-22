@@ -16,8 +16,6 @@ class ConvertFragment : Fragment() {
 
     val selectedDate: SimpleDate = DateUtils.utils.todayAsDate()
     val controller = ConverterController()
-    var curr_values: MutableMap<String, Float> =
-        mutableMapOf("RUB" to 1.0f, "USD" to 6.0f, "EUR" to 8.1f, "JPY" to 9.3f)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         //return super.onCreateView(inflater, container, savedInstanceState)
@@ -47,10 +45,8 @@ class ConvertFragment : Fragment() {
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner2.adapter = adapter2
 
-        val currentDateAsString = DateUtils.utils.todayAsString()
-        tvDate.text = currentDateAsString
+        tvDate.text = selectedDate.getAsSeparatedString('.')
 
-        val currentDate = DateUtils.utils.todayAsDate()
         changeDateButton.setOnClickListener {
             chooseDate()
         }
