@@ -1,15 +1,10 @@
 package com.example.currency
 
-import android.app.TaskStackBuilder
 import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
-import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.util.LayoutDirection
-import android.util.Log
-import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_main.*
+
 class MainActivity : AppCompatActivity() {
 
     private var currFragment: CurrFragment = CurrFragment()
@@ -18,12 +13,9 @@ class MainActivity : AppCompatActivity() {
     private var fragmentType: FragmentType = FragmentType.CURR
 
 
-    //private lateinit var textMessage: TextView
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_curr -> {
-                //textMessage.setText(R.string.title_curr)
-                Log.d("HAHAH", "CURR   $fragmentType")
                 if (fragmentType != FragmentType.CURR) {
                     showCurr()
                     fragmentType = FragmentType.CURR
@@ -31,8 +23,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             R.id.navigation_convert -> {
-                //textMessage.setText(R.string.title_convert)
-                Log.d("HAHAH", "CONV    ${fragmentType}")
                 if (fragmentType != FragmentType.CONVERT) {
                     showConvert()
                     fragmentType = FragmentType.CONVERT
@@ -41,8 +31,6 @@ class MainActivity : AppCompatActivity() {
 
             }
             R.id.navigation_history -> {
-                //textMessage.setText(R.string.title_history)
-                Log.d("HAHAH", "HIST    ${fragmentType}")
                 if (fragmentType != FragmentType.HISTORY) {
                     showHistory()
                     fragmentType = FragmentType.HISTORY
@@ -58,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var prefs = this.getSharedPreferences("appstorage", Context.MODE_PRIVATE)
+        val prefs = this.getSharedPreferences("appstorage", Context.MODE_PRIVATE)
         HistoryStorage.instance.init(prefs)
 
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
@@ -67,25 +55,22 @@ class MainActivity : AppCompatActivity() {
         showCurr()
     }
 
-    fun showCurr() {
+    private fun showCurr() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container, currFragment)
-        //transaction.addToBackStack(null)
         transaction.commit()
     }
 
-    fun showConvert() {
+    private fun showConvert() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container, convertFragment)
-        //transaction.addToBackStack(null)
         transaction.commit()
 
     }
 
-    fun showHistory() {
+    private fun showHistory() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container, historyFragment)
-        //transaction.addToBackStack(null)
         transaction.commit()
     }
 }

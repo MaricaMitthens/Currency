@@ -1,22 +1,16 @@
 package com.example.currency
 
-import android.content.Context
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.hist_item.*
 import kotlinx.android.synthetic.main.hist_item.view.*
 
 
-class HistoryAdapter(private val context: Context) :
+class HistoryAdapter :
     RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
-    var operations: MutableList<HistoryOperation> = HistoryStorage.instance.getHistory()
+    private var operations: MutableList<HistoryOperation> = HistoryStorage.instance.getHistory()
 
 
     init {

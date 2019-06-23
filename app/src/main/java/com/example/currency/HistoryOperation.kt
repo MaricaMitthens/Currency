@@ -6,5 +6,4 @@ data class HistoryOperation(
     @SerializedName("operationName") val operationName: String,
     @SerializedName("operationDetails") val operationDetails: String,
     @SerializedName("operationDate") val operationDate: String
-) {
-}
+)

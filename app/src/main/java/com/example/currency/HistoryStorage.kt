@@ -1,14 +1,13 @@
 package com.example.currency
 
 import android.content.SharedPreferences
-import android.util.Log
 import com.google.gson.Gson
-import com.google.gson.annotations.SerializedName
 import com.google.gson.reflect.TypeToken
 
 class HistoryStorage {
 
-    private val KEY: String = "history"
+
+    private val _hKEY: String = "history"
 
     private lateinit var sharedPreferences: SharedPreferences
     private var history: MutableList<HistoryOperation> = ArrayList()
@@ -23,7 +22,7 @@ class HistoryStorage {
     }
 
     fun getHistory(): MutableList<HistoryOperation> {
-        val rawData: String? = sharedPreferences.getString(KEY, "")
+        val rawData: String? = sharedPreferences.getString(_hKEY, "")
         if (rawData == "") {
             history = ArrayList()
             return history
@@ -46,8 +45,8 @@ class HistoryStorage {
         val gson = Gson()
         val itemListJsonString = gson.toJson(history)
 
-        var editor = sharedPreferences.edit()
-        editor.putString(KEY, itemListJsonString)
+        val editor = sharedPreferences.edit()
+        editor.putString(_hKEY, itemListJsonString)
         editor.apply()
     }
 }

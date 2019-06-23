@@ -3,29 +3,19 @@ package com.example.currency
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.fragment_convert.*
-import kotlinx.android.synthetic.main.fragment_convert.changeDateButton
-import kotlinx.android.synthetic.main.fragment_convert.tvDate
 
 class ConvertFragment : Fragment() {
 
-    val selectedDate: SimpleDate = DateUtils.utils.todayAsDate()
-    val controller = ConverterController()
+    private val selectedDate: SimpleDate = DateUtils.utils.todayAsDate()
+    private val controller = ConverterController()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        //return super.onCreateView(inflater, container, savedInstanceState)
         return inflater.inflate(R.layout.fragment_convert, container, false)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val client by lazy { CurrencyApiClient.create() }
-
     }
 
     override fun onStart() {
@@ -39,7 +29,7 @@ class ConvertFragment : Fragment() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
 
-        spinner.setSelection(1);
+        spinner.setSelection(1)
 
         val adapter2 = ArrayAdapter(this.context!!, android.R.layout.simple_spinner_item, currList)
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
