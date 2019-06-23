@@ -17,10 +17,8 @@ class HistoryFragment: Fragment() {
     override fun onStart() {
         super.onStart()
 
-
-
         adapter = this.context?.let { context?.let { it1 -> HistoryAdapter(it1) } }!!
-        rv_item_list.layoutManager = LinearLayoutManager(this.context)
-        rv_item_list.adapter = adapter
+        histView.layoutManager = LinearLayoutManager(this.context)
+        histView.adapter = adapter
     }
 }

@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.hist_item.view.*
 class HistoryAdapter(private val context: Context) :
     RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
-    var operations: ArrayList<HistoryOperation> = HistoryStorage.instance.getHistory()
+    var operations: MutableList<HistoryOperation> = HistoryStorage.instance.getHistory()
 
 
     init {
@@ -37,31 +37,11 @@ class HistoryAdapter(private val context: Context) :
     }
 
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
-
         val operation = operations[position]
-        var name:String  = ""
-        var details:String = ""
-        var date:String = ""
-        when (operation) {
-            is ConvertationOperation -> {
-                name = "Conversion"
-                details =
-                    "${operation.valueFrom} ${operation.currFrom}  ->  ${operation.valueTo} ${operation.currTo}  ${operation.rateDate}"
-                date = operation.operationDate
-            }
-            is CurrencyRateOperation -> {
-                name = "Currency Rate"
-                details = operation.rateDate
-                date = operation.operationDate
-            }
-        }
 
-
-        holder.view.operation_name.text = name
-        holder.view.operation.text = details
-        holder.view.operation_date.text = date
-
-
+        holder.view.operation_name.text = operation.operationName
+        holder.view.operation.text = operation.operationDetails
+        holder.view.operation_date.text = operation.operationDate
     }
 
     override fun getItemCount() = operations.size

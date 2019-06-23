@@ -56,24 +56,26 @@ class ConvertFragment : Fragment() {
     }
 
     private fun convert() {
-        //вызвать запрос??
-
         val curr1 = spinner.selectedItem.toString()
         val curr2 = spinner2.selectedItem.toString()
         var val1 = "0.00"
         if (value_from.text.isEmpty()) {
             value_from.setText(val1)
             value_to.setText(val1)
+            saveInHistory(curr1, val1, curr2, val1)
             return
         }
+
         val1 = value_from.text.toString()
         if (val1 == "0.00") {
             value_to.setText(val1)
+            saveInHistory(curr1, val1, curr2, val1)
             return
         }
-        val val2 = controller.convert(curr1,val1.toFloat(),curr2)
 
+        val val2 = controller.convert(curr1,val1.toFloat(),curr2)
         value_to.setText(val2)
+        saveInHistory(curr1, val1, curr2, val2)
     }
 
     private fun chooseDate() {
@@ -92,5 +94,14 @@ class ConvertFragment : Fragment() {
         dpd.show()
     }
 
+    private fun saveInHistory(from: String, valueFrom: String, to: String, valueTo: String) {
+        HistoryStorage.instance.addOperationToHistory(
+            HistoryOperation(
+                "Conversion",
+                "$valueFrom $from -> $valueTo $to (for ${selectedDate.getAsSeparatedString('.')})",
+                DateUtils.utils.todayAsString()
+            )
+        )
+    }
 }
 

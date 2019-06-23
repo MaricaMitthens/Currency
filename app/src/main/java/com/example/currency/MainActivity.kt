@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var prefs = this.getSharedPreferences("com.example.currency", Context.MODE_PRIVATE)
+        var prefs = this.getSharedPreferences("appstorage", Context.MODE_PRIVATE)
         HistoryStorage.instance.init(prefs)
 
         val navView: BottomNavigationView = findViewById(R.id.nav_view)

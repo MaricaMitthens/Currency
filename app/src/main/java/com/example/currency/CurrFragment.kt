@@ -32,9 +32,15 @@ class CurrFragment : Fragment() {
 
         tvDate.text = selectedDate.getAsSeparatedString('.')
         changeDateButton.setOnClickListener {
-            Log.d("DATE1", "on click y = ${selectedDate.getYear()}, m = ${selectedDate.getMonth()},  d = ${selectedDate.getDay()}")
+            Log.d(
+                "DATE1",
+                "on click y = ${selectedDate.getYear()}, m = ${selectedDate.getMonth()},  d = ${selectedDate.getDay()}"
+            )
             chooseDate(selectedDate.getYear(), selectedDate.getMonth(), selectedDate.getDay())
-            Log.d("DATE1", "after chosen y = ${selectedDate.getYear()}, m = ${selectedDate.getMonth()},  d = ${selectedDate.getDay()}")
+            Log.d(
+                "DATE1",
+                "after chosen y = ${selectedDate.getYear()}, m = ${selectedDate.getMonth()},  d = ${selectedDate.getDay()}"
+            )
 
         }
 
@@ -52,7 +58,13 @@ class CurrFragment : Fragment() {
                 val d2 = selectedDate.getAsSeparatedString('/')
                 tvDate.text = d
                 adapter.refreshCurrencyRate(d2)
-                HistoryStorage.instance.addOperationToHistory(CurrencyRateOperation("gte", d2))
+                HistoryStorage.instance.addOperationToHistory(
+                    HistoryOperation(
+                        "Currency Rate",
+                        "Rate for $d",
+                        DateUtils.utils.todayAsString()
+                    )
+                )
             }, current_year, current_month - 1, current_day)
 
         dpd.datePicker.maxDate = System.currentTimeMillis() + 1000
